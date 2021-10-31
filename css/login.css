@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'arial';
+    background: #121a2b;
+}
+
+.login {
+    width: 500px;
+    height: 500px;
+    background: #6495ed;
+    border: 0;
+    border-radius: 10px;
+}
+
+.avatar {
+    height: 150px;
+    font-size: 10px;
+    background: #292c2a;
+    color: cyan;
+}
+
+.login .logar {
+    height: 300px;
+    background-color: #6495ed;
+}
+
+h1 {
+    font-size: 24px;
+    color: #fffaf0;
+    text-align: left;
+    margin: 20px 0px 20px 20px;
+    font-weight: 500;
+}
+
+form input {
+    width: calc(50% - 40px);
+    padding: 5px 10px;
+}
+
+.button1 {
+    margin: 0px 20px;
+    width: calc(50% - 40px);
+    background: azure;
+    color: darkgrey;
+}
+
+.button2 {
+    margin: 0px 20px;
+    width: 50%;
+    background: azure;
+    color: darkgrey;
+}

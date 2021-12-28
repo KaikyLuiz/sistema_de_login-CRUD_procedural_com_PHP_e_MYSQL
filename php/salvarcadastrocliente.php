@@ -36,29 +36,51 @@ $tamanho_arquivo = $_FILES ["imgcli"]["size"];
  
 // estrutura para fazer a validação
 if (in_array ($tipo_arquivo_em_minusculo, $tipo_arquivo_suportado)){
-    if ($tipo_radio == "juridico" ||$tipo_radio == "fisico" ){
+    if ($tipo_radio == "fisico"){
       if ($check == 0) {
 
          //Salvando as imagens
-           $pasta = "../img/perfil_cliente/";
+           $pasta = "../img/perfil_cliente/fisico/";
            $img = uniqid ("IMG-", true). '.' . $tipo_arquivo_em_minusculo; 
            $img_url = $pasta . $img;
            $caminho_da_imagem = move_uploaded_file($nome_tmp_arquivo, $img_url);
 
-           
            if ($caminho_da_imagem) {
+               
            //salvando os arquivos
           $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro, cep, logradouro, n_residencia, email, senha) 
-         VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia',     '$email','$senha')") or die ($sql->error);
+         VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$senha')") or die ($sql->error);
           $id_cliente = $sql->insert_id;
            echo "salvos com sucesso!";
            }
-           
         }
+    }
+
+    elseif ($tipo_radio == "juridico" ){
+            if ($check == 0) {
+      
+               //Salvando as imagens
+                 $pasta = "../img/perfil_cliente/juridico/";
+                 $img = uniqid ("IMG-", true). '.' . $tipo_arquivo_em_minusculo; 
+                 $img_url = $pasta . $img;
+                 $caminho_da_imagem = move_uploaded_file($nome_tmp_arquivo, $img_url);
+      
+                 
+                 if ($caminho_da_imagem) {
+                     
+                 //salvando os arquivos
+                $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro, cep, logradouro, n_residencia, email, senha) 
+               VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$senha')") or die ($sql->error);
+                $id_cliente = $sql->insert_id;
+                 echo "salvos com sucesso!";
+                 }
+                }
+            
         else{ 
             header ('Location: ../html/erro_no_cadcliente.html');
      }
-    } 
+    }
+    
     else {
         header("Location: ../html/erro_radio_cadcli.html");
     }

@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/cadastro_cliente.css">
+    <link rel="stylesheet" type="text/css" href="../css/css.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastrar cliente</title>
+    <title>Alterar dados do cliente</title>
 </head>
-
 <body>
-    <div class="formulario">
-        <form action="../php/salvarcadastrocliente.php" method="POST" enctype="multipart/form-data">
-            <div class="cadastro_cliente"><br>
-                <p>PREENCHA O FORMULARIO E CADASTRE-SE </p>
-            </div>
+    <?php
 
+include "connect.php";
+
+$id_cliente = $_GET["id_cliente"];
+
+$cliente = mysqli_query($sql, "SELECT * FROM cliente WHERE id_cliente = '$id_cliente' ");  // "mysqli_query" Executa uma consulta no banco de dados.
+
+while ($coluna = mysqli_fetch_array($cliente)) 
+/* mysqli_fetch_array() guarda os dados em índices, a função pode também guardar os dados em índices associativos, usando os nomes dos campos do conjunto de resultado como chave.*/
+{
+$id_cliente= $coluna["id_cliente"];
+$tipo_radio = $_POST["tipo_radio"];
+$nome = $_POST["nome"];
+$dtn = $_POST["dt_nascimento"];
+$cep = $_POST["cep"];
+$estado = $_POST["estado"];
+$cidade = $_POST["cidade"];
+$bairro = $_POST ["bairro"];
+$logradouro = $_POST["logradouro"];
+$n_residencia = $_POST["n°_residencia"];
+$email = $_POST["email"];
+$senha = $_POST["senha"];
+}   
+?>
+            <form action="../php/salvarcadastrocliente.php" method="POST" enctype="multipart/form-data">
+            <div class="cadastro_cliente"><br>
+                <p>PREENCHA O FORMULARIO E ALTERE SEUS DADOS </p>
+            </div>
             <p>cliente:<input type="radio" name="tipo_radio" value="juridico">juridico
                 <input type="radio" name="tipo_radio" value="fisico">fisico
             </p>
@@ -45,12 +66,11 @@
 
                 <a href="../index.php"><button type="button">Voltar</button></a>
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit">Salvar</button>
 
                 <button type="reset">Limpar</button>
             </div>
         </form>
-    </div>
+</fieldset>
 </body>
-
 </html>

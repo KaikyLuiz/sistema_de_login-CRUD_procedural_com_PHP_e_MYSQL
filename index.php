@@ -1,6 +1,12 @@
-<?php 
+<?php
+include "conect.php";
 
-?> 
+//configuração para que a pagina só possa ser acessada se tiver um usuario logado 
+if (empty($_POST['usuario']) || empty($_POST['senha'])){
+header('location: index.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,9 +20,8 @@
 <body>
     <div class="logo">
 
-
-        <a href="../papelaria/php/login_cliente.php"><button type = "button" class = "botao">logar</button></a>
-        <a href="../papelaria/html/cadastro_cliente.html"><button type="button"  class = "botao">Cadastre-se</button></a>
+        <a href="../Papelaria-CRUD_simples_em_PHP_e_MYSQL/php/login_cliente.php"><button type = "button" class = "botao">logar</button></a>
+        <a href="../Papelaria-CRUD_simples_em_PHP_e_MYSQL/html/cadastro_cliente.html"><button type="button"  class = "botao">Cadastre-se</button></a>
 
     </div>
     <div class="menu">

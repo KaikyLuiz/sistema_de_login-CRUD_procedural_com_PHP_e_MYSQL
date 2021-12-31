@@ -42,8 +42,8 @@ h1 {
 }
 
 form input {
-    width: calc(50% - 40px);
-    padding: 5px 10px;
+    width: calc(50% - 50px);
+    padding: 10px 5px 10px;
 }
 
 .button1 {

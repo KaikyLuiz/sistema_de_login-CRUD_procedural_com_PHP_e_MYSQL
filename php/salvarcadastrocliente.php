@@ -13,7 +13,7 @@ $bairro = $_POST ["bairro"];
 $logradouro = $_POST["logradouro"];
 $n_residencia = $_POST["n°_residencia"];
 $email = $_POST["email"];
-$senha = $_POST["senha"];
+
 
 // consultando se o email do cliente ja existe na base de dados
 $salvar =  $sql->query("SELECT * FROM cliente WHERE email = '$email'");
@@ -39,6 +39,10 @@ if (in_array ($tipo_arquivo_em_minusculo, $tipo_arquivo_suportado)){
     if ($tipo_radio == "fisico"){
       if ($check == 0) {
 
+        // criptografando a senha 
+          $hash = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+
+
          //Salvando as imagens
            $pasta = "../img/perfil_cliente/fisico/";
            $img = uniqid ("IMG-", true). '.' . $tipo_arquivo_em_minusculo; 
@@ -49,7 +53,7 @@ if (in_array ($tipo_arquivo_em_minusculo, $tipo_arquivo_suportado)){
                
            //salvando os arquivos
           $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro, cep, logradouro, n_residencia, email, senha) 
-         VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$senha')") or die ($sql->error);
+         VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$hash')") or die ($sql->error);
           $id_cliente = $sql->insert_id;
            echo "salvos com sucesso!";
            }
@@ -58,7 +62,10 @@ if (in_array ($tipo_arquivo_em_minusculo, $tipo_arquivo_suportado)){
 
     elseif ($tipo_radio == "juridico" ){
             if ($check == 0) {
-      
+              
+                // criptografando a senha 
+                 $hash = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+
                //Salvando as imagens
                  $pasta = "../img/perfil_cliente/juridico/";
                  $img = uniqid ("IMG-", true). '.' . $tipo_arquivo_em_minusculo; 
@@ -70,7 +77,7 @@ if (in_array ($tipo_arquivo_em_minusculo, $tipo_arquivo_suportado)){
                      
                  //salvando os arquivos
                 $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro, cep, logradouro, n_residencia, email, senha) 
-               VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$senha')") or die ($sql->error);
+               VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$hash')") or die ($sql->error);
                 $id_cliente = $sql->insert_id;
                  echo "salvos com sucesso!";
                  }

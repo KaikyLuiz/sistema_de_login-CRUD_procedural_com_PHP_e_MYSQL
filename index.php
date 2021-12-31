@@ -1,15 +1,9 @@
 <?php
-include "conect.php";
 
-//configuração para que a pagina só possa ser acessada se tiver um usuario logado 
-if (empty($_POST['usuario']) || empty($_POST['senha'])){
-header('location: index.php');
-}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <meta charset="UTF-8">

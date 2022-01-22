@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #98475e;
+}
+
+div.painel {
+    background: #097866;
+    width: 500px;
+    height: 500px;
+}

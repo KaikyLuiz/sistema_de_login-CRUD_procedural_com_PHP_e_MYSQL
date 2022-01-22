@@ -13,9 +13,9 @@
 
 <body>
     <div class="logo">
-
-        <a href="../Papelaria-CRUD_simples_em_PHP_e_MYSQL/php/login_cliente.php"><button type = "button" class = "botao">logar</button></a>
-        <a href="../Papelaria-CRUD_simples_em_PHP_e_MYSQL/html/cadastro_cliente.html"><button type="button"  class = "botao">Cadastre-se</button></a>
+        <a href="./html/admim.html"><button type="button" class="botao">admim</button></a><br>
+        <a href="./html/login_cliente.html"><button type = "button" class = "botao">logar</button></a><br>
+        <a href="../Papelaria-CRUD_simples_em_PHP_e_MYSQL/html/cadastro_cliente.html"><button type="button"  class = "botao">Cadastre-se</button></a><br><br>
 
     </div>
     <div class="menu">
@@ -40,6 +40,7 @@
     <div class="contato">
         <h1>
             <p>contato/fornecedor </p>
+         
         </h1>
     </div>
 </body>

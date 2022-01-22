@@ -42,25 +42,36 @@ if (in_array ($tipo_arquivo_em_minusculo, $tipo_arquivo_suportado)){
         // criptografando a senha 
           $hash = password_hash($_POST["senha"], PASSWORD_DEFAULT);
 
-
          //Salvando as imagens
            $pasta = "../img/perfil_cliente/fisico/";
            $img = uniqid ("IMG-", true). '.' . $tipo_arquivo_em_minusculo; 
            $img_url = $pasta . $img;
            $caminho_da_imagem = move_uploaded_file($nome_tmp_arquivo, $img_url);
-
-           if ($caminho_da_imagem) {
                
+           if($caminho_da_imagem){
            //salvando os arquivos
-          $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro, cep, logradouro, n_residencia, email, senha) 
-         VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$hash')") or die ($sql->error);
-          $id_cliente = $sql->insert_id;
+           $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro,
+           cep, logradouro, n_residencia, email, senha) 
+           VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$hash')") or die ($sql->error);
+            $id_cliente = $sql->insert_id;
            echo "salvos com sucesso!";
-           }
         }
+        else{
+          //salvando os arquivos sem A IMAGEM!
+          $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro,
+          cep, logradouro, n_residencia, email, senha) 
+          VALUES ('$tipo_radio', null ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$hash')") or die ($sql->error);
+           $id_cliente = $sql->insert_id;
+          echo "salvos com sucesso!";
+        }
+        }
+        else{ 
+          header ('Location: ../html/erro_no_cadcliente.html');
+      }
     }
-
+  
     elseif ($tipo_radio == "juridico" ){
+
             if ($check == 0) {
               
                 // criptografando a senha 
@@ -79,19 +90,29 @@ if (in_array ($tipo_arquivo_em_minusculo, $tipo_arquivo_suportado)){
                 $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro, cep, logradouro, n_residencia, email, senha) 
                VALUES ('$tipo_radio','$img_url' ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$hash')") or die ($sql->error);
                 $id_cliente = $sql->insert_id;
+
                  echo "salvos com sucesso!";
                  }
+                 else{
+                  //salvando os arquivos sem A IMAGEM!
+                  $sql->query ("INSERT INTO  cliente  (tipo, img_url, nome, dt_nascimento, estado, cidade, bairro,
+                  cep, logradouro, n_residencia, email, senha) 
+                  VALUES ('$tipo_radio', null ,'$nome', '$dtn', '$estado', '$cidade', '$bairro', '$cep', '$logradouro', '$n_residencia', '$email','$hash')") or die ($sql->error);
+                   $id_cliente = $sql->insert_id;
+                  echo "salvos com sucesso!";
                 }
+              }
             
+
         else{ 
             header ('Location: ../html/erro_no_cadcliente.html');
      }
     }
-    
     else {
         header("Location: ../html/erro_radio_cadcli.html");
     }
-}
+  }
+  
 else {
         header ('Location: ../html/erro_no_cadcliente_img.html');
 }

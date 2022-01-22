@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login cliente</title>
-</head>
-<body>
-    <div class='login'>
-        <div class='avatar'>
-            <h1> capa papelaria</h1>
-        </div>
-        <div class='logar'>
-            <h1>faça seu login</h1>
-            <form action="../php/logar_cliente.php" method="POST" >
-                <label>email: </label><input type="email" name="email" placeholder="Digite seu email" required ><br><br>
-                <label>senha: </label> <input type="password" name="senha" placeholder="Digite sua senha" required><br><br>
-                <div class="button">
-                <button type="submit">Entrar</button><br><br>
-                <a href="../html/cadastro_cliente.html">não é cadatrado? acesse e cadastre-se </a>
-            </form>
-            </div>
-        </div>
+<?php
+include 'conect.php';
 
-</body>
+$email = $sql->real_escape_string($_POST["email"]);
+$senha = $sql->real_escape_string($_POST["senha"]);
 
-</html>
+$dados = $sql->query ("SELECT * FROM cliente where email = '$email' limit 1 ") or die ($sql->error);
+
+$usuario =  $dados->fetch_assoc();
+
+if ($email == $usuario['email']){
+    if (password_verify($senha, $usuario['senha'])){
+         if (!isset($_SESSION)){
+                 session_start();
+                }
+                 $_SESSION['id'] = $usuario['id_cliente'];
+                 $_SESSION['nome'] = $usuario['nome'];
+
+                 header("location:../php/painel.php");
+              }
+     else{
+      header("location:../html/erro_no_logincliente_senha.html");
+      }
+    }
+ else{
+  header("location:../html/erro_no_logincliente_email.html");
+ }
+
+?>

@@ -1,4 +1,5 @@
 * {
+    /*resetando valores padroes*/
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -41,21 +42,21 @@ h1 {
     font-weight: 500;
 }
 
+form label {
+    padding-right: 45px;
+}
+
 form input {
     width: calc(50% - 50px);
     padding: 10px 5px 10px;
 }
 
-.button1 {
-    margin: 0px 20px;
-    width: calc(50% - 40px);
-    background: azure;
-    color: darkgrey;
-}
-
-.button2 {
-    margin: 0px 20px;
-    width: 50%;
-    background: azure;
-    color: darkgrey;
+.button {
+    margin: 10px;
+    padding: 15px;
+    width: 120px;
+    align-items: center;
+    justify-content: center;
+    background: rgb(22, 105, 119);
+    color: rgb(243, 245, 245);
 }
